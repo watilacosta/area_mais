@@ -59,7 +59,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_22_034233) do
     t.string "email", null: false
     t.string "password_digest", null: false
     t.integer "role", null: false
-    t.bigint "plan_id", null: false
+    t.bigint "plan_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

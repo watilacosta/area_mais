@@ -5,9 +5,11 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  enum :role, [ :admin, :owner, :member ]
+  enum :role, [ :admin, :owner, :member ], prefix: true
 
-  validates :name, :role, :plan, presence: true
+  validates :name, :role, presence: true
   validates :email, presence: true, uniqueness: true
   validates :password, length: { minimum: 6 }, if: -> { password.present? }
+
+  scope :non_members, -> { where.not(role: :member) }
 end
