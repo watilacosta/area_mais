@@ -27,12 +27,12 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_22_034233) do
   create_table "exclusive_areas", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
-    t.bigint "owner_id_id", null: false
+    t.bigint "owner_id", null: false
     t.integer "member_limit"
     t.decimal "price", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["owner_id_id"], name: "index_exclusive_areas_on_owner_id_id"
+    t.index ["owner_id"], name: "index_exclusive_areas_on_owner_id"
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -67,7 +67,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_22_034233) do
   end
 
   add_foreign_key "contents", "exclusive_areas"
-  add_foreign_key "exclusive_areas", "users", column: "owner_id_id"
+  add_foreign_key "exclusive_areas", "users", column: "owner_id"
   add_foreign_key "memberships", "exclusive_areas"
   add_foreign_key "memberships", "users"
   add_foreign_key "users", "plans"

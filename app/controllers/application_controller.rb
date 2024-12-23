@@ -4,9 +4,15 @@ class ApplicationController < ActionController::API
   after_action :verify_authorized
   before_action :authorize_request
 
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   attr_reader :current_user
 
   private
+
+  def user_not_authorized
+    render json: { errors: "You are not authorized to perform this action" }, status: :forbidden
+  end
 
   def authorize_request
     header = request.headers["Authorization"]
