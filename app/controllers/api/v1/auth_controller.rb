@@ -1,6 +1,8 @@
 module Api
   module V1
     class AuthController < ApplicationController
+      before_action :skip_authorization, only: %i[login signup]
+
       def login
         if user&.authenticate(params[:password])
           token = JsonWebToken.encode({ user_id: user.id })

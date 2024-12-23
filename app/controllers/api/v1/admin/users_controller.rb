@@ -3,7 +3,7 @@ module Api
     module Admin
       class UsersController < ApplicationController
         def index
-          users = User.non_members
+          users = authorize([ :admin, User.non_members ])
 
           render json: users, status: :ok
         end

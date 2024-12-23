@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       post "auth/login", to: "auth#login"
       post "auth/signup", to: "auth#signup"
 
+      resources :exclusive_areas, only: %i[index create]
+
       namespace :admin do
         resources :users, only: %i[index]
       end

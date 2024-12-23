@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   belongs_to :plan, inverse_of: :users, optional: true
+
   has_many :memberships, inverse_of: :user
   has_many :owned_areas, class_name: "ExclusiveArea", foreign_key: "owner_id", inverse_of: :owner
 
