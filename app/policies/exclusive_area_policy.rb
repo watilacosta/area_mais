@@ -1,6 +1,6 @@
 class ExclusiveAreaPolicy < ApplicationPolicy
   def index? = user.role_admin?
-  def create? = record.owner == user
+  def create? = record.owner == user || user.role_admin?
 
   class Scope < ApplicationPolicy::Scope
     def resolve
